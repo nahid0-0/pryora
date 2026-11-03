@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pre-order - Pryora</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&family=Courier+Prime&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/shop.css">
+<style>
+.wrap{max-width:1160px;margin:0 auto;padding:0 clamp(20px,5vw,48px)}
+.kick{font-family:var(--type);font-size:12px;letter-spacing:.3em;margin:0 0 18px;display:inline-flex;align-items:center;gap:10px}
+.kick::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+h2.t{font-family:var(--serif);font-weight:400;font-size:clamp(34px,4.4vw,52px);line-height:1.08;margin:0 0 12px}
+
+/* hero: green, the page's signature */
+.phero{background:var(--green);color:#fff;position:relative;overflow:hidden;isolation:isolate}
+.phero::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse 50% 70% at 78% 50%,rgba(127,211,161,.16),transparent 70%)}
+.phero .in{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(32px,6vw,88px);align-items:center;padding-top:clamp(56px,8vw,104px);padding-bottom:clamp(56px,8vw,104px)}
+.phero .kick{color:#9FDDB8}
+.phero .kick::before{background:#7FD3A1;animation:ping 2.2s ease-out infinite}
+.phero h1{font-family:var(--serif);font-weight:300;font-size:clamp(44px,6vw,84px);line-height:1.02;margin:0}
+.phero h1 em{font-style:italic;color:#CFEAD9}
+.phero p{max-width:44ch;margin:24px 0 0;font-size:17px;opacity:.88}
+.stats{display:flex;gap:clamp(24px,4vw,56px);margin:36px 0 0;padding:22px 0 0;border-top:1px solid rgba(255,255,255,.2);flex-wrap:wrap}
+.stats div{display:grid}
+.stats b{font-family:var(--serif);font-weight:400;font-size:34px;line-height:1.1}
+.stats span{font-size:13px;opacity:.75}
+.hbtns{display:flex;gap:24px;align-items:center;flex-wrap:wrap;margin-top:36px}
+.wbtn{display:inline-block;padding:15px 34px;background:var(--cream);color:var(--green);font-size:14px;letter-spacing:.12em;transition:background .25s}
+.wbtn:hover{background:#fff}
+.ulink{font-size:14px;letter-spacing:.12em;border-bottom:1px solid rgba(255,255,255,.4);padding-bottom:3px}
+.ulink:hover{border-color:#fff}
+.phero .pic{justify-self:center;width:min(380px,100%);position:relative}
+.phero .pic::before{content:"";position:absolute;inset:0;transform:translate(-16px,16px);border:1px solid rgba(207,234,217,.6);border-radius:999px 999px 0 0}
+.phero .arch{position:relative;aspect-ratio:4/5;border-radius:999px 999px 0 0;overflow:hidden;background:#173828}
+.phero .arch img{width:100%;height:100%;object-fit:cover;object-position:50% 45%;display:block}
+
+/* steps */
+.steps{padding:clamp(64px,9vw,112px) 0 0}
+.steps .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,40px);margin-top:36px;counter-reset:s}
+.step{border-top:1px solid rgba(31,74,54,.35);padding-top:22px}
+.step b{display:block;font-family:var(--type);font-weight:400;font-size:12px;letter-spacing:.28em;color:var(--green);margin-bottom:12px}
+.step h3{font-family:var(--serif);font-weight:400;font-size:28px;line-height:1.15;margin:0 0 8px}
+.step p{margin:0;font-size:15px}
+
+/* the pieces */
+.pieces{padding:clamp(64px,9vw,112px) 0 0}
+.pieces .head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:32px}
+.pieces .head p{margin:0;max-width:44ch}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,2.6vw,36px);align-items:start}
+.left{margin:-6px 0 14px;font-size:13px;color:var(--green)}
+.bar{height:3px;background:rgba(31,74,54,.14);margin:-6px 0 14px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--green)}
+
+/* reserve form */
+.reserve{margin:clamp(72px,9vw,120px) 0 0;background:var(--mint);border-top:1px solid rgba(31,74,54,.2);border-bottom:1px solid rgba(31,74,54,.2)}
+.reserve .in{display:grid;grid-template-columns:1fr 360px;gap:clamp(32px,5vw,72px);padding-top:clamp(56px,8vw,96px);padding-bottom:clamp(56px,8vw,96px);align-items:start}
+.reserve .kick{color:var(--green)}
+form{display:grid;grid-template-columns:1fr 1fr;gap:18px 20px}
+.f{display:grid;gap:6px}
+.f.full{grid-column:1/-1}
+.f>span{font-size:13px;letter-spacing:.06em}
+.f input,.f select,.f textarea{width:100%;background:var(--cream);border:1px solid rgba(31,74,54,.28);padding:12px 14px;font-size:15px;border-radius:0;outline:none;transition:border-color .2s}
+.f select{-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%231F4A36' stroke-width='1.4'%3E%3Cpath d='m1 1 5 5 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+.f textarea{min-height:84px;resize:vertical}
+.f input:focus,.f select:focus,.f textarea:focus{border-color:var(--green)}
+.f .err{font-size:13px;color:#A2302A;display:none}
+.f.bad input,.f.bad select{border-color:#A2302A}
+.f.bad .err{display:block}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{background:var(--cream);border:1px solid rgba(31,74,54,.28);padding:9px 15px;font-size:14px}
+.chips button[aria-pressed="true"]{background:var(--green);border-color:var(--green);color:#fff}
+.qty2{display:inline-flex;align-items:center;border:1px solid rgba(31,74,54,.28);background:var(--cream);width:max-content}
+.qty2 button{width:42px;height:44px;background:none;border:0;font-size:18px}
+.qty2 span{min-width:30px;text-align:center}
+.submit{grid-column:1/-1;position:relative;padding:18px;background:var(--green);color:#fff;border:0;font-size:16px;letter-spacing:.12em;transition:background .25s}
+.submit::after{content:"";position:absolute;inset:4px;border:1px solid rgba(255,255,255,.28);pointer-events:none}
+.submit:hover{background:var(--green2)}
+.fine{grid-column:1/-1;margin:0;font-size:13px;color:var(--green)}
+
+.summary{position:sticky;top:100px;background:var(--cream);border:1px solid rgba(31,74,54,.25);padding:22px}
+.summary h3{font-family:var(--serif);font-weight:400;font-size:26px;margin:0 0 16px}
+.sumpic{display:grid;grid-template-columns:80px 1fr;gap:14px;align-items:center;padding-bottom:16px;border-bottom:1px solid var(--line)}
+.sumpic img{width:80px;aspect-ratio:4/5;object-fit:cover;display:block;border:1px solid rgba(31,74,54,.3)}
+.sumpic b{font-family:var(--serif);font-weight:400;font-size:21px;line-height:1.15;display:block}
+.sumpic span{font-size:13px;color:var(--goldtext)}
+.summary dl{margin:14px 0 0;display:grid;grid-template-columns:1fr auto;gap:8px 12px;font-size:14px}
+.summary dt{opacity:.75}
+.summary dd{margin:0;text-align:right}
+.summary .tot{border-top:1px solid var(--line);padding-top:12px;margin-top:6px;font-size:15px}
+.summary .tot+dd{border-top:1px solid var(--line);padding-top:12px;margin-top:6px;font-family:var(--serif);font-size:26px}
+.summary .ship{margin:16px 0 0;padding:12px 14px;background:var(--mint);color:var(--green);font-size:14px}
+
+.done{grid-column:1/-1;text-align:center;padding:48px 20px;background:var(--cream);border:1px solid rgba(31,74,54,.25)}
+.done svg{width:44px;height:44px;margin:0 auto 18px;display:block;fill:none;stroke:var(--green);stroke-width:1.4}
+.done h3{font-family:var(--serif);font-weight:400;font-size:36px;margin:0 0 8px}
+.done code{font-family:var(--type);letter-spacing:.14em;background:var(--mint);color:var(--green);padding:4px 10px}
+.done p{max-width:46ch;margin:12px auto 0}
+.done button{margin-top:26px;background:none;border:1px solid var(--green);color:var(--green);padding:12px 26px;font-size:14px;letter-spacing:.1em}
+.done button:hover{background:var(--green);color:#fff}
+
+/* faq */
+.faq{padding:clamp(64px,9vw,112px) 0 clamp(72px,9vw,120px);display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(32px,5vw,72px)}
+.faq details{border-top:1px solid var(--line)}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;display:flex;justify-content:space-between;gap:16px;align-items:center;padding:18px 0;cursor:pointer;font-family:var(--serif);font-size:23px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--sans);font-size:22px;color:var(--green);transition:transform .25s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{margin:0 0 20px;max-width:56ch}
+
+@media (max-width:900px){
+  .phero .in{grid-template-columns:1fr}
+  .phero .pic{width:min(300px,78%);order:-1}
+  .steps .grid3,.pgrid{grid-template-columns:1fr 1fr}
+  .reserve .in{grid-template-columns:1fr}
+  .summary{position:static;order:-1}
+  .faq{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .steps .grid3{grid-template-columns:1fr}
+  .pgrid{gap:22px 12px}
+  .pgrid .card h3{font-size:19px}
+  .pgrid .qadd{font-size:12px;padding:9px 6px}
+  .pgrid .ships{display:block;margin:0}
+  form{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <a class="mark" href="test.html">PRYORA</a>
+  <ul>
+    <li><a href="shop.html">Shop all</a></li>
+    <li><a href="shop.html?type=rings">Rings</a></li>
+    <li><a href="shop.html?type=necklaces">Necklaces</a></li>
+    <li><a href="shop.html?type=bangles">Bangles</a></li>
+    <li><a href="preorder.html" class="prelink" aria-current="page">Pre-order</a></li>
+  </ul>
+  <div class="tools">
+    <a class="icon" href="shop.html#q" aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></a>
+    <button class="bagbtn" type="button" aria-label="Bag"></button>
+  </div>
+</nav>
+
+<header class="phero">
+  <div class="wrap in">
+    <div>
+      <p class="kick">PRE-ORDER IS OPEN</p>
+      <h1>Reserve it<br><em>before it is made</em></h1>
+      <p>Some pieces are made in very small batches. Pre-order to hold yours today. Nothing to pay now, and it ships to you on the date shown.</p>
+      <div class="stats" id="stats"></div>
+      <div class="hbtns"><a class="wbtn" href="#pieces">See the pieces</a><a class="ulink" href="#how">How it works</a></div>
+    </div>
+    <div class="pic"><div class="arch"><img src="product%20images/web/emerald-hand.jpg" alt="Gold-tone rings with green stones on a hand" fetchpriority="high"></div></div>
+  </div>
+</header>
+
+<main>
+  <section class="wrap steps" id="how">
+    <p class="kick" style="color:var(--green)">HOW IT WORKS</p>
+    <h2 class="t">Three steps, no payment up front</h2>
+    <div class="grid3">
+      <div class="step"><b>01</b><h3>Reserve your piece</h3><p>Choose the size and colour and send the form. Your piece is held in your name from that moment.</p></div>
+      <div class="step"><b>02</b><h3>We make it</h3><p>Your piece is finished by hand in a small batch. We message you when it is ready to ship.</p></div>
+      <div class="step"><b>03</b><h3>It ships to you</h3><p>Delivered by the date on the piece. Pay on delivery, by cash or card, once it is in your hands.</p></div>
+    </div>
+  </section>
+
+  <section class="wrap pieces" id="pieces">
+    <div class="head">
+      <div><p class="kick" style="color:var(--green)">OPEN FOR PRE-ORDER</p><h2 class="t">The pieces</h2></div>
+      <p>Each batch is limited. When a batch is full, the piece goes back to the waiting list.</p>
+    </div>
+    <div class="pgrid" id="pgrid"></div>
+  </section>
+
+  <section class="reserve" id="reserve">
+    <div class="wrap in">
+      <div>
+        <p class="kick">RESERVE</p>
+        <h2 class="t">Hold your piece</h2>
+        <p style="margin:0 0 32px;max-width:48ch">We will call or message you to confirm within a day. You can change or cancel any time before it ships.</p>
+        <form id="form" novalidate>
+          <label class="f full"><span>Piece</span><select id="piece"></select></label>
+          <div class="f full"><span id="sizeLbl">Size</span><div class="chips" id="sizes"></div></div>
+          <div class="f"><span>Colour</span><div class="chips" id="tones"></div></div>
+          <div class="f"><span>Quantity</span><div class="qty2"><button type="button" id="qm" aria-label="One less">&minus;</button><span id="qn">1</span><button type="button" id="qp" aria-label="One more">+</button></div></div>
+          <label class="f" id="fName"><span>Full name</span><input id="name" autocomplete="name" required><em class="err">Please enter your name.</em></label>
+          <label class="f" id="fPhone"><span>Mobile number</span><input id="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="01XXXXXXXXX" required><em class="err">Please enter an 11-digit number starting with 01.</em></label>
+          <label class="f" id="fCity"><span>City</span><select id="city" required><option value="">Choose a city</option><option>Dhaka</option><option>Chattogram</option><option>Sylhet</option><option>Khulna</option><option>Rajshahi</option><option>Barishal</option><option>Rangpur</option><option>Mymensingh</option></select><em class="err">Please choose a city.</em></label>
+          <label class="f" id="fArea"><span>Area</span><input id="area" autocomplete="address-level3" placeholder="e.g. Dhanmondi" required><em class="err">Please enter your area.</em></label>
+          <label class="f full" id="fAddr"><span>Address</span><input id="addr" autocomplete="street-address" placeholder="House, road, flat" required><em class="err">Please enter your address.</em></label>
+          <label class="f full"><span>Note (optional)</span><textarea id="note" placeholder="A gift? A size question? Tell us."></textarea></label>
+          <button class="submit" type="submit">Reserve my piece</button>
+          <p class="fine">Nothing to pay today. You pay on delivery when your piece ships.</p>
+        </form>
+      </div>
+      <aside class="summary" aria-live="polite" id="summary"></aside>
+    </div>
+  </section>
+
+  <section class="wrap faq">
+    <div><p class="kick" style="color:var(--green)">QUESTIONS</p><h2 class="t">Before you reserve</h2></div>
+    <div>
+      <details open><summary>When do I pay?</summary><p>Only when your piece is delivered. Pay the courier in cash or by card. There is no advance and no deposit.</p></details>
+      <details><summary>What if the ship date changes?</summary><p>We will message you straight away with the new date. If it no longer works for you, we cancel the reservation, no questions asked.</p></details>
+      <details><summary>Can I change the size or cancel?</summary><p>Yes, any time before it ships. Reply to our confirmation message or call us with your reservation number.</p></details>
+      <details><summary>Is a pre-order piece the same as the shop piece?</summary><p>Exactly the same. Pre-order only means the batch is still being finished. It comes in the same Pryora pouch and box.</p></details>
+    </div>
+  </section>
+</main>
+
+<footer id="about">
+  <div class="foot">
+    <div class="about"><div class="mark">PRYORA</div><p>Jewellery designed in small batches and finished by hand. Made to be worn for decades.</p></div>
+    <div><h4>ABOUT US</h4><ul><li><a href="test.html#about">Our story</a></li><li><a href="test.html#about">The craft</a></li><li><a href="test.html#about">Materials</a></li><li><a href="test.html#about">Journal</a></li></ul></div>
+    <div><h4>SHOP</h4><ul><li><a href="shop.html?type=rings">Rings</a></li><li><a href="shop.html?type=necklaces">Necklaces</a></li><li><a href="shop.html?type=bangles">Bangles</a></li><li><a href="preorder.html">Pre-order</a></li></ul></div>
+    <div><h4>HELP</h4><ul><li><a href="#">Shipping</a></li><li><a href="#">Returns</a></li><li><a href="#">Ring sizes</a></li><li><a href="#">Contact</a></li></ul></div>
+  </div>
+  <div class="legal"><span>&copy; 2026 Pryora. All rights reserved.</span><span>Delivery in 2 to 4 days. Cash on delivery available.</span></div>
+</footer>
+
+<script src="assets/products.js"></script>
+<script>
+(function(){
+  var P=Pryora, pre=P.products.filter(function(p){return p.isPre});
+  var $=function(id){return document.getElementById(id)};
+  var BATCH={ 'emerald-stone-rings':40, 'wave-bangle':50, 'stacked-set':20 };
+
+  /* hero stats */
+  $('stats').innerHTML=
+    '<div><b>'+pre.length+'</b><span>pieces open</span></div>'+
+    '<div><b>'+pre.map(function(p){return p.preorder.ships}).sort(function(a,b){return Date.parse(a+' 2026')-Date.parse(b+' 2026')})[0]+'</b><span>first batch ships</span></div>'+
+    '<div><b>৳0</b><span>to pay today</span></div>';
+
+  /* cards: the shop card plus how full the batch is, and Reserve jumps to the form */
+  $('pgrid').innerHTML=pre.map(function(p){
+    var total=BATCH[p.id]||p.preorder.left*2, taken=total-p.preorder.left, pct=Math.round(taken/total*100);
+    var html=P.card(p)
+      .replace('<a class="qadd pre" href="product.html?id='+p.id+'">Pre-order</a>',
+        '<p class="left">'+p.preorder.left+' of '+total+' left in this batch</p><div class="bar" aria-hidden="true"><i style="width:'+pct+'%"></i></div>'+
+        '<button class="qadd pre" type="button" data-reserve="'+p.id+'">Reserve</button>');
+    return html;
+  }).join('');
+
+  /* form state */
+  var cur=pre[0], size=cur.sizes[0], tone=cur.tones[0], qty=1;
+  var want=new URLSearchParams(location.search).get('id');
+  var qs=new URLSearchParams(location.search);
+  if(want&&P.byId(want)&&P.byId(want).isPre){cur=P.byId(want);
+    size=cur.sizes.indexOf(qs.get('size'))>-1?qs.get('size'):cur.sizes[0];
+    tone=cur.tones.indexOf(qs.get('tone'))>-1?qs.get('tone'):cur.tones[0];}
+
+  $('piece').innerHTML=pre.map(function(p){return '<option value="'+p.id+'">'+P.esc(p.name)+' · '+P.money(p.price)+'</option>'}).join('');
+
+  function chips(el,list,val){
+    el.innerHTML=list.map(function(v){return '<button type="button" data-v="'+P.esc(v)+'" aria-pressed="'+(v===val)+'">'+P.esc(v)+'</button>'}).join('');
+  }
+  function paint(){
+    $('piece').value=cur.id;
+    $('sizeLbl').textContent=cur.type==='necklaces'?'Length':'Size';
+    chips($('sizes'),cur.sizes,size); chips($('tones'),cur.tones,tone);
+    $('qn').textContent=qty;
+    $('summary').innerHTML=
+      '<h3>Your reservation</h3>'+
+      '<div class="sumpic"><img src="'+cur.img+'" alt="" style="object-position:'+cur.focus+'"><div><b>'+P.esc(cur.name)+'</b><span>'+P.esc(size)+' · '+P.esc(tone)+'</span></div></div>'+
+      '<dl><dt>Price</dt><dd>'+P.money(cur.price)+'</dd><dt>Quantity</dt><dd>'+qty+'</dd><dt>Delivery</dt><dd>Free</dd>'+
+      '<dt class="tot">Pay on delivery</dt><dd>'+P.money(cur.price*qty)+'</dd></dl>'+
+      '<p class="ship">Ships by '+cur.preorder.ships+'. Nothing to pay today.</p>';
+  }
+  $('piece').addEventListener('change',function(){cur=P.byId(this.value);size=cur.sizes[0];tone=cur.tones[0];paint();});
+  $('sizes').addEventListener('click',function(e){var b=e.target.closest('button');if(b){size=b.dataset.v;paint();}});
+  $('tones').addEventListener('click',function(e){var b=e.target.closest('button');if(b){tone=b.dataset.v;paint();}});
+  $('qm').addEventListener('click',function(){qty=Math.max(1,qty-1);paint();});
+  $('qp').addEventListener('click',function(){qty=Math.min(Math.min(5,cur.preorder.left),qty+1);paint();});
+
+  $('pgrid').addEventListener('click',function(e){
+    var b=e.target.closest('[data-reserve]'); if(!b) return;
+    cur=P.byId(b.dataset.reserve); size=cur.sizes[0]; tone=cur.tones[0]; qty=1; paint();
+    $('reserve').scrollIntoView({behavior:'smooth',block:'start'});
+    setTimeout(function(){$('name').focus({preventScroll:true})},500);
+  });
+
+  /* validation + confirmation (saved in this browser; no server yet) */
+  function check(id,ok){ $(id).classList.toggle('bad',!ok); return ok; }
+  $('form').addEventListener('submit',function(e){
+    e.preventDefault();
+    var phone=$('phone').value.replace(/[\s-]/g,'').replace(/^\+?88/,'');
+    var ok=[
+      check('fName',$('name').value.trim().length>1),
+      check('fPhone',/^01[3-9]\d{8}$/.test(phone)),
+      check('fCity',!!$('city').value),
+      check('fArea',$('area').value.trim().length>1),
+      check('fAddr',$('addr').value.trim().length>3)
+    ].every(Boolean);
+    if(!ok){ var first=document.querySelector('.f.bad input,.f.bad select'); if(first) first.focus(); return; }
+    var ref='PRE-'+String(Date.now()).slice(-6);
+    var rec={ref:ref,id:cur.id,size:size,tone:tone,qty:qty,name:$('name').value.trim(),phone:phone,city:$('city').value,area:$('area').value.trim(),addr:$('addr').value.trim(),note:$('note').value.trim(),at:new Date().toISOString()};
+    try{var all=JSON.parse(localStorage.getItem('pryora-preorders'))||[];all.push(rec);localStorage.setItem('pryora-preorders',JSON.stringify(all));}catch(err){}
+    $('form').innerHTML='<div class="done" role="status"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22"/><path d="m15 24.5 6 6 12-13"/></svg>'+
+      '<h3>Your piece is reserved</h3><p>Reservation <code>'+ref+'</code></p>'+
+      '<p>Thank you, '+P.esc(rec.name.split(' ')[0])+'. We will call or message '+P.esc(phone)+' within a day to confirm. '+P.esc(cur.name)+' ships by '+cur.preorder.ships+', and you pay on delivery.</p>'+
+      '<button type="button" onclick="location.reload()">Reserve another piece</button></div>';
+    $('reserve').scrollIntoView({behavior:'smooth',block:'start'});
+  });
+  ['name','phone','area','addr'].forEach(function(id){ $(id).addEventListener('input',function(){ this.closest('.f').classList.remove('bad'); }); });
+  $('city').addEventListener('change',function(){ this.closest('.f').classList.remove('bad'); });
+
+  paint();
+  if(want) setTimeout(function(){$('reserve').scrollIntoView({block:'start'})},50);
+})();
+</script>
+</body>
+</html>

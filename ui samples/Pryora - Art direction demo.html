@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pryora - Art direction demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Jost:wght@300;400&family=Courier+Prime&display=swap" rel="stylesheet">
+<style>
+:root{
+  --oxblood:#3A0D0D; --wine:#4F0C10; --gold:#B8892B; --champagne:#D9B04A;
+  --cream:#FFFBF0; --ivory:#F2ECE0;
+  --serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
+  --sans:'Jost',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --type:'Courier Prime','Courier New',monospace;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px);background:var(--cream)}
+body{margin:0;background:var(--cream);color:var(--wine);font-family:var(--sans);font-weight:300;line-height:1.65}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--champagne);outline-offset:3px}
+
+/* nav */
+nav{display:flex;justify-content:space-between;align-items:center;padding:28px clamp(20px,5vw,64px);background:var(--oxblood);color:var(--ivory)}
+nav .mark{font-family:var(--serif);font-size:26px;letter-spacing:.32em;font-weight:400}
+nav ul{display:flex;gap:clamp(16px,3vw,40px);list-style:none;margin:0;padding:0;font-size:14px;letter-spacing:.06em}
+nav a{text-decoration:none;opacity:.85}
+nav a:hover{opacity:1;color:var(--champagne)}
+
+/* hero */
+.hero{background:var(--oxblood);color:var(--ivory);text-align:center;padding:clamp(72px,12vw,150px) 24px clamp(80px,12vw,150px);position:relative;overflow:hidden}
+.hero h1{font-family:var(--serif);font-weight:300;font-size:clamp(44px,8vw,104px);line-height:1.02;margin:0 auto;max-width:12ch;letter-spacing:.01em;position:relative;z-index:1}
+.hero p{max-width:44ch;margin:28px auto 0;font-size:17px;opacity:.82;position:relative;z-index:1}
+.curve{position:absolute;left:50%;top:50%;width:min(1100px,130%);transform:translate(-50%,-62%);pointer-events:none}
+.curve path{fill:none;stroke:var(--champagne);stroke-width:1.4;stroke-linecap:round;stroke-dasharray:1600;stroke-dashoffset:1600;animation:draw 2.8s .3s cubic-bezier(.5,0,.2,1) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.btn{display:inline-block;margin-top:40px;padding:15px 38px;border:1px solid var(--champagne);color:var(--champagne);text-decoration:none;font-size:14px;letter-spacing:.14em;transition:background .25s,color .25s;position:relative;z-index:1}
+.btn:hover{background:var(--champagne);color:var(--oxblood)}
+.tag{font-family:var(--type);font-size:13px;letter-spacing:.3em;color:var(--champagne);margin-top:56px;position:relative;z-index:1}
+
+/* collections */
+.wrap{max-width:1120px;margin:0 auto;padding:clamp(64px,9vw,120px) clamp(20px,5vw,48px)}
+h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,4.5vw,52px);line-height:1.1;margin:0 0 12px;color:var(--wine)}
+.lede{max-width:46ch;margin:0 0 56px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,44px);align-items:start}
+.card{text-decoration:none;display:block}
+.card:nth-child(2){margin-top:64px}
+.arch{aspect-ratio:3/4;background:var(--ivory);border-radius:999px 999px 0 0;display:grid;place-items:center;border:1px solid rgba(184,137,43,.45);transition:background .3s}
+.card:hover .arch{background:var(--oxblood)}
+.card:hover .arch svg *{stroke:var(--champagne)}
+.arch svg{width:46%;height:auto}
+.arch svg *{fill:none;stroke:var(--wine);stroke-width:1.6;transition:stroke .3s}
+.card h3{font-family:var(--serif);font-weight:400;font-size:26px;margin:20px 0 2px}
+.card span{font-size:15px;color:var(--gold)}
+.card span{color:#8A6418}
+
+/* story band */
+.band{background:var(--wine);color:var(--ivory);text-align:center;padding:clamp(64px,9vw,110px) 24px}
+.band blockquote{font-family:var(--serif);font-weight:300;font-size:clamp(26px,3.6vw,44px);line-height:1.25;max-width:22ch;margin:0 auto}
+.star{width:18px;height:18px;margin:0 auto 28px;display:block;fill:var(--champagne)}
+
+/* brand kit */
+.kit{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,72px)}
+.sw{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.sw div{aspect-ratio:1;padding:10px;font-size:12px;display:flex;align-items:flex-end;border:1px solid rgba(79,12,16,.15)}
+.spec .d{font-family:var(--serif);font-size:48px;font-weight:300;line-height:1.05;margin:0}
+.spec .b{margin:14px 0 0;font-size:15px}
+.spec .t{font-family:var(--type);font-size:12px;letter-spacing:.28em;color:#8A6418;margin-top:14px}
+.notes{margin:40px 0 0;padding:0;list-style:none;display:grid;gap:10px;font-size:15px}
+.notes li{padding-left:22px;position:relative}
+.notes li::before{content:"";position:absolute;left:0;top:.7em;width:10px;height:1px;background:var(--gold)}
+
+footer{background:var(--oxblood);color:var(--ivory);padding:48px clamp(20px,5vw,64px);display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;font-size:14px;opacity:.95}
+footer .mark{font-family:var(--serif);letter-spacing:.32em;font-size:20px}
+
+@media (max-width:760px){
+  nav ul{display:none}
+  .grid{grid-template-columns:1fr}
+  .card:nth-child(2){margin-top:0}
+  .arch{aspect-ratio:4/4}
+  .kit{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){.curve path{animation:none;stroke-dashoffset:0}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="mark">PRYORA</div>
+  <ul><li><a href="#collections">Rings</a></li><li><a href="#collections">Necklaces</a></li><li><a href="#collections">Earrings</a></li><li><a href="#kit">Brand kit</a></li></ul>
+</nav>
+
+<header class="hero">
+  <svg class="curve" viewBox="0 0 1100 400" aria-hidden="true"><path d="M20 340 C 220 90, 420 60, 560 190 S 880 330, 1080 120"/></svg>
+  <h1>Made to be worn for decades</h1>
+  <p>Fine jewellery in 18k gold, designed in small batches and finished by hand.</p>
+  <a class="btn" href="#collections">Shop the collection</a>
+  <div class="tag">ELEGANCE AT ITS PEAK</div>
+</header>
+
+<main>
+<section class="wrap" id="collections">
+  <h2>The collection</h2>
+  <p class="lede">Three families, each drawn from the same flowing line. Start with the piece you will wear every day.</p>
+  <div class="grid">
+    <a class="card" href="#collections">
+      <div class="arch"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="62" r="26"/><path d="M38 38 L50 22 L62 38 Z"/></svg></div>
+      <h3>Rings</h3><span>From $240</span>
+    </a>
+    <a class="card" href="#collections">
+      <div class="arch"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M14 20 C 14 80, 86 80, 86 20"/><path d="M50 74 L42 86 L50 98 L58 86 Z"/></svg></div>
+      <h3>Necklaces</h3><span>From $180</span>
+    </a>
+    <a class="card" href="#collections">
+      <div class="arch"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 12 L50 34"/><path d="M50 34 C 24 44, 24 84, 50 90 C 76 84, 76 44, 50 34 Z"/></svg></div>
+      <h3>Earrings</h3><span>From $120</span>
+    </a>
+  </div>
+</section>
+
+<section class="band">
+  <svg class="star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 0 C10.8 6 14 9.2 20 10 C14 10.8 10.8 14 10 20 C9.2 14 6 10.8 0 10 C6 9.2 9.2 6 10 0Z"/></svg>
+  <blockquote>Every piece begins as one unbroken line of gold.</blockquote>
+</section>
+
+<section class="wrap" id="kit">
+  <h2>Brand kit for the site</h2>
+  <p class="lede">Everything below is pulled directly from the logo.</p>
+  <div class="kit">
+    <div>
+      <div class="sw">
+        <div style="background:#3A0D0D;color:#F2ECE0">Oxblood<br>#3A0D0D</div>
+        <div style="background:#4F0C10;color:#F2ECE0">Wine<br>#4F0C10</div>
+        <div style="background:#B8892B;color:#FFFBF0">Gold<br>#B8892B</div>
+        <div style="background:#D9B04A;color:#3A0D0D">Champagne<br>#D9B04A</div>
+        <div style="background:#FFFBF0;color:#4F0C10">Cream<br>#FFFBF0</div>
+        <div style="background:#F2ECE0;color:#4F0C10">Ivory<br>#F2ECE0</div>
+      </div>
+      <ul class="notes">
+        <li>Oxblood and cream carry most pages; gold is an accent only.</li>
+        <li>The gold curve is the signature. Use it once per page.</li>
+        <li>Arch-top frames for product photos echo the curve.</li>
+        <li>The four-point star works as a divider and loader.</li>
+      </ul>
+    </div>
+    <div class="spec">
+      <p class="d">Cormorant Garamond</p>
+      <p class="b">Jost Light for body text and navigation. Cormorant carries headlines at light and regular weights, matching the logo's thin strokes.</p>
+      <div class="t">COURIER PRIME FOR THE TAGLINE ONLY</div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="mark">PRYORA</div>
+  <div>Free insured shipping and 30-day returns</div>
+</footer>
+
+</body>
+</html>

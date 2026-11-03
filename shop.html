@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Shop - Pryora</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Jost:wght@300;400;500&family=Courier+Prime&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/shop.css">
+<style>
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(20px,5vw,48px)}
+
+/* page head */
+.head{padding:clamp(40px,6vw,72px) 0 0}
+.crumb{font-size:14px;color:var(--goldtext);margin:0 0 18px}
+.crumb a:hover{text-decoration:underline}
+.head h1{font-family:var(--serif);font-weight:400;font-size:clamp(40px,5vw,64px);line-height:1.05;margin:0}
+.head .lede{max-width:52ch;margin:12px 0 0}
+
+/* type tabs */
+.types{display:flex;gap:clamp(20px,3vw,40px);margin:clamp(28px,4vw,44px) 0 0;padding:0;list-style:none;border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
+.types::-webkit-scrollbar{display:none}
+.types button{background:none;border:0;padding:0 0 14px;font-family:var(--serif);font-size:22px;white-space:nowrap;position:relative;color:var(--wine);opacity:.6;transition:opacity .2s}
+.types button sup{font-family:var(--sans);font-size:12px;color:var(--goldtext);margin-left:4px}
+.types button:hover{opacity:1}
+.types button[aria-selected="true"]{opacity:1}
+.types button[aria-selected="true"]::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--gold)}
+
+/* toolbar */
+.bar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:20px 0}
+.search{position:relative;flex:1 1 320px;max-width:440px}
+.search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:18px;height:18px;fill:none;stroke:var(--goldtext);stroke-width:1.5;pointer-events:none}
+.search input{width:100%;background:transparent;border:1px solid rgba(79,12,16,.22);padding:12px 40px 12px 42px;font-size:15px;outline:none;transition:border-color .2s;-webkit-appearance:none;border-radius:0}
+.search input::placeholder{color:rgba(79,12,16,.5)}
+.search input:focus{border-color:var(--gold)}
+.search input::-webkit-search-cancel-button{display:none}
+.search .x{position:absolute;right:6px;top:50%;transform:translateY(-50%);width:32px;height:32px;background:none;border:0;font-size:20px;line-height:1;color:var(--goldtext)}
+.search .x[hidden]{display:none}
+.fbtn{display:none;align-items:center;gap:8px;background:none;border:1px solid rgba(79,12,16,.22);padding:11px 16px;font-size:14px;letter-spacing:.08em}
+.fbtn b{font-weight:400;background:var(--wine);color:var(--cream);border-radius:99px;min-width:20px;height:20px;display:inline-grid;place-items:center;font-size:12px;padding:0 6px}
+.fbtn b:empty{display:none}
+.count{margin-left:auto;font-size:14px;color:var(--goldtext)}
+.sort{display:flex;align-items:center;gap:8px;font-size:14px}
+.sort select{background:transparent;border:1px solid rgba(79,12,16,.22);padding:10px 34px 10px 12px;font-size:14px;-webkit-appearance:none;appearance:none;border-radius:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%238A6418' stroke-width='1.4'%3E%3Cpath d='m1 1 5 5 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center}
+
+/* layout */
+.shop{display:grid;grid-template-columns:240px 1fr;gap:clamp(28px,4vw,56px);align-items:start;padding-bottom:clamp(72px,9vw,120px)}
+
+/* filters */
+.filters{position:sticky;top:96px}
+.fhead{display:none}
+.opt{border-top:1px solid var(--line)}
+.opt:last-of-type{border-bottom:1px solid var(--line)}
+.opt summary{list-style:none;display:flex;justify-content:space-between;align-items:center;padding:16px 0;cursor:pointer;font-family:var(--serif);font-size:22px}
+.opt summary::-webkit-details-marker{display:none}
+.sq{width:28px;height:28px;border:1px solid rgba(79,12,16,.3);position:relative;flex:none}
+.sq::before,.sq::after{content:"";position:absolute;left:50%;top:50%;width:10px;height:1px;background:var(--wine);transform:translate(-50%,-50%)}
+.sq::after{transform:translate(-50%,-50%) rotate(90deg)}
+.opt[open] .sq::after{display:none}
+.opt .body{padding:0 0 18px}
+.opt h5{font-family:var(--type);font-weight:400;font-size:11px;letter-spacing:.26em;color:var(--goldtext);margin:4px 0 10px}
+.opt h5:not(:first-child){margin-top:16px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{background:none;border:1px solid rgba(79,12,16,.2);padding:7px 13px;font-size:14px;transition:border-color .2s,color .2s,background .2s}
+.chips button:hover{border-color:var(--wine)}
+.chips button[aria-pressed="true"]{border-color:var(--wine);background:var(--wine);color:var(--cream)}
+.check{display:flex;align-items:center;gap:12px;font-size:15px;cursor:pointer}
+.check input{appearance:none;-webkit-appearance:none;width:20px;height:20px;border:1px solid rgba(79,12,16,.35);margin:0;display:grid;place-items:center;cursor:pointer}
+.check input:checked{background:var(--wine);border-color:var(--wine)}
+.check input:checked::after{content:"";width:9px;height:5px;border:solid var(--cream);border-width:0 0 1.5px 1.5px;transform:translateY(-1px) rotate(-45deg)}
+.clear{background:none;border:0;padding:16px 0 0;font-size:14px;color:var(--goldtext);text-decoration:underline;text-underline-offset:3px}
+.fshow{display:none}
+
+/* active filter pills */
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px}
+.pills:empty{display:none}
+.pills button{display:inline-flex;align-items:center;gap:8px;background:var(--ivory);border:1px solid var(--goldline);border-radius:99px;padding:6px 10px 6px 14px;font-size:13px}
+.pills button span{font-size:16px;line-height:1;color:var(--goldtext)}
+.pills button:hover{border-color:var(--wine)}
+
+/* grid */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,2.6vw,36px) clamp(16px,2.2vw,28px);align-items:start}
+.grid .card{animation:in .5s ease both;animation-delay:calc(var(--n,0) * 45ms)}
+@keyframes in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.grid mark{background:rgba(217,176,74,.35);color:inherit;padding:0 1px}
+
+.empty{text-align:center;padding:clamp(56px,8vw,96px) 20px;border:1px solid var(--line)}
+.empty svg{width:18px;height:18px;fill:var(--champagne);margin:0 auto 22px;display:block}
+.empty h2{font-family:var(--serif);font-weight:400;font-size:32px;margin:0 0 8px}
+.empty p{margin:0 0 24px}
+.empty button{background:none;border:1px solid var(--wine);padding:11px 24px;font-size:14px;letter-spacing:.1em}
+.empty button:hover{background:var(--wine);color:var(--cream)}
+
+/* pre-order: the green highlight */
+.prebanner{display:flex;align-items:center;gap:14px 24px;flex-wrap:wrap;margin:clamp(24px,3vw,36px) 0 0;padding:16px 22px;background:var(--green);color:#fff;position:relative;overflow:hidden;transition:background .25s}
+.prebanner:hover{background:var(--green2)}
+.prebanner::after{content:"";position:absolute;inset:4px;border:1px solid rgba(255,255,255,.22);pointer-events:none}
+.pb-kicker{font-family:var(--type);font-size:12px;letter-spacing:.28em;display:inline-flex;align-items:center;gap:10px;color:#CFEAD9}
+.pb-kicker::before{content:"";width:7px;height:7px;border-radius:50%;background:#7FD3A1;animation:ping 2.2s ease-out infinite}
+.pb-text{font-family:var(--serif);font-size:21px;line-height:1.25;flex:1;min-width:220px}
+.pb-go{display:inline-flex;align-items:center;gap:10px;font-size:14px;letter-spacing:.1em;white-space:nowrap}
+.pb-go svg{width:16px;height:10px;fill:none;stroke:currentColor;stroke-width:1.4;transition:transform .25s}
+.prebanner:hover .pb-go svg{transform:translateX(4px)}
+.prebanner[hidden]{display:none}
+.types button.pretab{color:var(--green);opacity:1;display:inline-flex;align-items:center;gap:8px}
+.types button.pretab::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green)}
+.types button.pretab sup{color:var(--green)}
+.types button.pretab[aria-selected="true"]::after{background:var(--green)}
+.prehead{display:none;grid-column:1/-1;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:18px 22px;background:var(--mint);border:1px solid rgba(31,74,54,.25);color:var(--green);font-size:15px}
+.prehead a{color:var(--green);text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+.is-preview .prehead{display:flex}
+
+.scrim{display:none}
+
+@media (max-width:980px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:820px){
+  .shop{grid-template-columns:1fr}
+  .fbtn{display:inline-flex}
+  .count{margin-left:0;flex:1}
+  .search{max-width:none;flex-basis:100%}
+  .sort span{display:none}
+
+  /* filters become a drawer */
+  .filters{position:fixed;top:0;bottom:0;left:0;z-index:40;width:min(360px,88vw);background:var(--cream);padding:0 22px 110px;overflow-y:auto;transform:translateX(-102%);transition:transform .35s cubic-bezier(.2,.7,.2,1);visibility:hidden}
+  .filters.open{transform:none;visibility:visible}
+  .fhead{display:flex;justify-content:space-between;align-items:center;padding:18px 0;position:sticky;top:0;background:var(--cream);z-index:1}
+  .fhead h2{font-family:var(--serif);font-weight:400;font-size:28px;margin:0}
+  .fhead button{width:40px;height:40px;background:none;border:1px solid var(--line);font-size:22px;line-height:1}
+  .fshow{display:block;position:fixed;left:0;bottom:0;width:min(360px,88vw);padding:16px 22px calc(16px + env(safe-area-inset-bottom,0px));background:var(--cream);border-top:1px solid var(--line);visibility:hidden;transform:translateX(-102%);transition:transform .35s cubic-bezier(.2,.7,.2,1);z-index:41}
+  .filters.open + .fshow{transform:none;visibility:visible}
+  .fshow button{width:100%;padding:15px;background:var(--oxblood);color:var(--cream);border:0;font-size:15px;letter-spacing:.1em}
+  .scrim{display:block;position:fixed;inset:0;z-index:39;background:rgba(58,13,13,.45);opacity:0;pointer-events:none;transition:opacity .3s}
+  .scrim.open{opacity:1;pointer-events:auto}
+}
+@media (max-width:560px){
+  .grid{gap:22px 12px}
+  .card h3{font-size:19px;margin-top:12px}
+  .card .price{font-size:14px;margin-bottom:10px}
+  .qadd{padding:9px 8px;font-size:12px;letter-spacing:.06em}
+  .badge{font-size:11px;padding:5px 10px;bottom:10px}
+}
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <a class="mark" href="test.html">PRYORA</a>
+  <ul>
+    <li><a href="shop.html" data-nav="">Shop all</a></li>
+    <li><a href="shop.html?type=rings" data-nav="rings">Rings</a></li>
+    <li><a href="shop.html?type=necklaces" data-nav="necklaces">Necklaces</a></li>
+    <li><a href="shop.html?type=bangles" data-nav="bangles">Bangles</a></li>
+    <li><a href="preorder.html" class="prelink" data-nav="preorder">Pre-order</a></li>
+  </ul>
+  <div class="tools">
+    <button class="icon" type="button" id="focusSearch" aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg></button>
+    <a class="prepill" href="preorder.html">Pre-order</a>
+    <button class="bagbtn" type="button" aria-label="Bag"></button>
+  </div>
+</nav>
+
+<main class="wrap">
+  <header class="head">
+    <p class="crumb"><a href="test.html">Home</a> / <span id="crumbType">Shop</span></p>
+    <h1 id="title">The shop</h1>
+    <p class="lede" id="lede">Every piece, in one place. Filter by type, size or colour, or search for the one you have in mind.</p>
+    <a class="prebanner" id="prebanner" href="shop.html?type=preorder">
+      <span class="pb-kicker">PRE-ORDER OPEN</span>
+      <span class="pb-text" id="pbText"></span>
+      <span class="pb-go">See pre-orders <svg viewBox="0 0 16 10" aria-hidden="true"><path d="M1 5h13M10 1l4 4-4 4"/></svg></span>
+    </a>
+    <div class="types" role="tablist" aria-label="Type" id="types"></div>
+  </header>
+
+  <div class="bar">
+    <label class="search">
+      <span class="sr">Search the shop</span>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+      <input type="search" id="q" placeholder="Search rings, pendants, bangles…" autocomplete="off">
+      <button class="x" type="button" id="qx" aria-label="Clear search" hidden>&times;</button>
+    </label>
+    <button class="fbtn" type="button" id="openF" aria-controls="filters" aria-expanded="false">Filters <b id="fcount"></b></button>
+    <p class="count" id="count" aria-live="polite"></p>
+    <label class="sort"><span>Sort</span>
+      <select id="sort">
+        <option value="featured">Featured</option>
+        <option value="new">Newest</option>
+        <option value="low">Price, low to high</option>
+        <option value="high">Price, high to low</option>
+      </select>
+    </label>
+  </div>
+
+  <div class="shop">
+    <aside class="filters" id="filters" aria-label="Filters">
+      <div class="fhead"><h2>Filters</h2><button type="button" id="closeF" aria-label="Close filters">&times;</button></div>
+
+      <details class="opt" open><summary>Size <span class="sq"></span></summary>
+        <div class="body" id="sizes"></div></details>
+
+      <details class="opt" open><summary>Price <span class="sq"></span></summary>
+        <div class="body"><div class="chips" data-group="price">
+          <button type="button" data-v="u1500" aria-pressed="false">Under ৳1,500</button>
+          <button type="button" data-v="1500-2500" aria-pressed="false">৳1,500 – ৳2,500</button>
+          <button type="button" data-v="o2500" aria-pressed="false">Over ৳2,500</button>
+        </div></div></details>
+
+      <details class="opt"><summary>Colour <span class="sq"></span></summary>
+        <div class="body"><div class="chips" data-group="tone">
+          <button type="button" data-v="Gold-tone" aria-pressed="false">Gold-tone</button>
+          <button type="button" data-v="Silver-tone" aria-pressed="false">Silver-tone</button>
+          <button type="button" data-v="Rose-tone" aria-pressed="false">Rose-tone</button>
+        </div></div></details>
+
+      <details class="opt" open><summary>Availability <span class="sq"></span></summary>
+        <div class="body"><label class="check"><input type="checkbox" id="instock"> In stock only</label></div></details>
+
+      <button class="clear" type="button" id="clearAll">Clear all filters</button>
+    </aside>
+    <div class="fshow"><button type="button" id="showRes">Show results</button></div>
+    <div class="scrim" id="scrim"></div>
+
+    <section aria-label="Products">
+      <div class="pills" id="pills"></div>
+      <div class="grid" id="grid"></div>
+    </section>
+  </div>
+</main>
+
+<footer id="about">
+  <div class="foot">
+    <div class="about"><div class="mark">PRYORA</div><p>Jewellery designed in small batches and finished by hand. Made to be worn for decades.</p></div>
+    <div><h4>ABOUT US</h4><ul><li><a href="test.html#about">Our story</a></li><li><a href="test.html#about">The craft</a></li><li><a href="test.html#about">Materials</a></li><li><a href="test.html#about">Journal</a></li></ul></div>
+    <div><h4>SHOP</h4><ul><li><a href="shop.html?type=rings">Rings</a></li><li><a href="shop.html?type=necklaces">Necklaces</a></li><li><a href="shop.html?type=bangles">Bangles</a></li><li><a href="preorder.html">Pre-order</a></li></ul></div>
+    <div><h4>HELP</h4><ul><li><a href="#">Shipping</a></li><li><a href="#">Returns</a></li><li><a href="#">Ring sizes</a></li><li><a href="#">Contact</a></li></ul></div>
+  </div>
+  <div class="legal"><span>&copy; 2026 Pryora. All rights reserved.</span><span>Delivery in 2 to 4 days. Cash on delivery available.</span></div>
+</footer>
+
+<script src="assets/products.js"></script>
+<script>
+(function(){
+  var P=Pryora, all=P.products;
+  var LEDE={
+    '':'Every piece, in one place. Filter by type, size or colour, or search for the one you have in mind.',
+    rings:'Bows, leaves and stones. Most of our rings are adjustable, so they fit without guesswork.',
+    necklaces:'Fine chains and small pendants, made to be worn every day and layered.',
+    bangles:'Slim bangles that click shut, made to be worn alone or stacked.',
+    preorder:'Pieces that are being made right now. Reserve yours today and it ships on the date shown, before they reach the shop.'
+  };
+  var SIZE_GROUPS=[['rings','RING SIZE',['Adjustable','6','7','8']],['bangles','BANGLE SIZE',['2.4','2.6','2.8']],['necklaces','CHAIN LENGTH',['16"','18"','20"']]];
+
+  /* state, mirrored in the URL so links like shop.html?type=rings work */
+  var url=new URLSearchParams(location.search);
+  var st={
+    type:(P.TYPES[url.get('type')]||url.get('type')==='preorder')?url.get('type'):'',
+    q:url.get('q')||'',
+    size:(url.get('size')||'').split(',').filter(Boolean),
+    price:url.get('price')||'',
+    tone:(url.get('tone')||'').split(',').filter(Boolean),
+    stock:url.get('stock')==='1',
+    sort:url.get('sort')||'featured'
+  };
+
+  var $=function(id){return document.getElementById(id)};
+  var grid=$('grid'), q=$('q'), filters=$('filters');
+
+  /* type tabs */
+  function tabs(){
+    var list=[['','All',all.length]].concat(Object.keys(P.TYPES).map(function(k){return [k,P.TYPES[k],all.filter(function(p){return p.type===k}).length]}));
+    list.push(['preorder','Pre-order',all.filter(function(p){return p.isPre}).length]);
+    $('types').innerHTML=list.map(function(t){
+      return '<button type="button" role="tab" data-type="'+t[0]+'"'+(t[0]==='preorder'?' class="pretab"':'')+' aria-selected="'+(st.type===t[0])+'">'+t[1]+'<sup>'+t[2]+'</sup></button>';
+    }).join('');
+  }
+
+  /* size chips, only the groups that make sense for the chosen type */
+  function sizes(){
+    $('sizes').innerHTML=SIZE_GROUPS.filter(function(g){return !P.TYPES[st.type]||st.type===g[0]}).map(function(g){
+      return '<h5>'+g[1]+'</h5><div class="chips" data-group="size">'+g[2].map(function(v){
+        return '<button type="button" data-v="'+v.replace(/"/g,'&quot;')+'" aria-pressed="'+(st.size.indexOf(v)>-1)+'">'+v+'</button>';
+      }).join('')+'</div>';
+    }).join('');
+  }
+
+  function priceOk(p){
+    if(st.price==='u1500') return p.price<1500;
+    if(st.price==='1500-2500') return p.price>=1500&&p.price<=2500;
+    if(st.price==='o2500') return p.price>2500;
+    return true;
+  }
+  function norm(s){return s.toLowerCase().replace(/[^a-z0-9 ]/g,' ')}
+
+  function results(){
+    var words=norm(st.q).split(/\s+/).filter(Boolean);
+    var r=all.filter(function(p){
+      if(st.type==='preorder'){ if(!p.isPre) return false; }
+      else if(st.type&&p.type!==st.type) return false;
+      if(st.stock&&p.soldOut) return false;
+      if(!priceOk(p)) return false;
+      if(st.size.length&&!st.size.some(function(s){return p.sizes.indexOf(s)>-1})) return false;
+      if(st.tone.length&&!st.tone.some(function(t){return p.tones.indexOf(t)>-1})) return false;
+      if(words.length){
+        var hay=norm(p.name+' '+P.TYPES[p.type]+' '+p.blurb+' '+p.tones.join(' '));
+        if(!words.every(function(w){return hay.indexOf(w)>-1})) return false;
+      }
+      return true;
+    });
+    var s=st.sort;
+    r.sort(function(a,b){
+      if(s==='low') return a.price-b.price;
+      if(s==='high') return b.price-a.price;
+      if(s==='new') return b.added-a.added;
+      return (a.soldOut-b.soldOut)||all.indexOf(a)-all.indexOf(b);
+    });
+    return r;
+  }
+
+  function esc(s){return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}
+  function highlight(html){
+    var words=st.q.trim().split(/\s+/).filter(function(w){return w.length>1});
+    if(!words.length) return html;
+    var re=new RegExp('('+words.map(esc).join('|')+')','gi');
+    return html.replace(/(<h3><a[^>]*>)([^<]*)(<\/a>)/,function(m,a,t,c){return a+t.replace(re,'<mark>$1</mark>')+c});
+  }
+
+  function pills(){
+    var out=[];
+    if(st.q) out.push(['q','','“'+st.q+'”']);
+    st.size.forEach(function(v){out.push(['size',v,'Size '+v])});
+    if(st.price){var b=document.querySelector('[data-group="price"] [data-v="'+st.price+'"]'); out.push(['price',st.price,b?b.textContent:st.price]);}
+    st.tone.forEach(function(v){out.push(['tone',v,v])});
+    if(st.stock) out.push(['stock','','In stock']);
+    $('pills').innerHTML=out.map(function(p){
+      return '<button type="button" data-k="'+p[0]+'" data-v="'+p[1].replace(/"/g,'&quot;')+'">'+p[2]+' <span aria-hidden="true">&times;</span><span class="sr">Remove</span></button>';
+    }).join('');
+    var n=st.size.length+st.tone.length+(st.price?1:0)+(st.stock?1:0);
+    $('fcount').textContent=n||'';
+  }
+
+  function syncUrl(){
+    var u=new URLSearchParams();
+    if(st.type) u.set('type',st.type);
+    if(st.q) u.set('q',st.q);
+    if(st.size.length) u.set('size',st.size.join(','));
+    if(st.price) u.set('price',st.price);
+    if(st.tone.length) u.set('tone',st.tone.join(','));
+    if(st.stock) u.set('stock','1');
+    if(st.sort!=='featured') u.set('sort',st.sort);
+    var s=u.toString();
+    try{history.replaceState(null,'',s?'?'+s:location.pathname)}catch(e){}
+  }
+
+  function render(){
+    var r=results();
+    grid.innerHTML=r.length
+      ? (st.type==='preorder'?'<div class="prehead"><span>Reserve now, pay on delivery. Each piece ships by the date on its card.</span><a href="preorder.html">How pre-order works</a></div>':'')+r.map(function(p,i){return highlight(P.card(p)).replace('<article class="card','<article style="--n:'+i+'" class="card')}).join('')
+      : '<div class="empty" style="grid-column:1/-1"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 0 C10.8 6 14 9.2 20 10 C14 10.8 10.8 14 10 20 C9.2 14 6 10.8 0 10 C6 9.2 9.2 6 10 0Z"/></svg><h2>Nothing matches, yet</h2><p>Try a different word, or loosen a filter.</p><button type="button" id="emptyClear">Clear search and filters</button></div>';
+    $('count').textContent=r.length+(r.length===1?' piece':' pieces');
+    $('showRes').textContent='Show '+r.length+(r.length===1?' piece':' pieces');
+    var name=st.type==='preorder'?'Pre-order':st.type?P.TYPES[st.type]:'';
+    $('prebanner').hidden=st.type==='preorder';
+    document.body.classList.toggle('is-preview',st.type==='preorder');
+    $('title').textContent=name||'The shop';
+    $('crumbType').innerHTML=name?'<a href="shop.html">Shop</a> / '+name:'Shop';
+    $('lede').textContent=LEDE[st.type];
+    document.title=(name||'Shop')+' - Pryora';
+    document.querySelectorAll('[data-nav]').forEach(function(a){ if(a.dataset.nav===st.type) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current'); });
+    $('qx').hidden=!st.q;
+    pills(); syncUrl();
+  }
+
+  function paintChips(){
+    document.querySelectorAll('[data-group]').forEach(function(g){
+      var k=g.dataset.group;
+      g.querySelectorAll('button').forEach(function(b){
+        var v=b.dataset.v, on=k==='price'?st.price===v:st[k].indexOf(v)>-1;
+        b.setAttribute('aria-pressed',String(on));
+      });
+    });
+    $('instock').checked=st.stock;
+  }
+
+  function clearAll(){st.q='';q.value='';st.size=[];st.price='';st.tone=[];st.stock=false;paintChips();render();}
+
+  /* events */
+  $('types').addEventListener('click',function(e){
+    var b=e.target.closest('[data-type]'); if(!b) return;
+    st.type=b.dataset.type;
+    // drop sizes that do not belong to the new type
+    if(P.TYPES[st.type]){var ok=SIZE_GROUPS.filter(function(g){return g[0]===st.type})[0][2]; st.size=st.size.filter(function(s){return ok.indexOf(s)>-1});}
+    tabs(); sizes(); render();
+  });
+  filters.addEventListener('click',function(e){
+    var b=e.target.closest('[data-group] button'); if(!b) return;
+    var k=b.closest('[data-group]').dataset.group, v=b.dataset.v;
+    if(k==='price') st.price=st.price===v?'':v;
+    else { var i=st[k].indexOf(v); if(i>-1) st[k].splice(i,1); else st[k].push(v); }
+    paintChips(); render();
+  });
+  $('prebanner').addEventListener('click',function(e){e.preventDefault();st.type='preorder';tabs();sizes();render();$('types').scrollIntoView({block:'start',behavior:'smooth'});});
+  $('instock').addEventListener('change',function(){st.stock=this.checked;render();});
+  $('clearAll').addEventListener('click',clearAll);
+  $('sort').addEventListener('change',function(){st.sort=this.value;render();});
+  var t; q.addEventListener('input',function(){clearTimeout(t);t=setTimeout(function(){st.q=q.value.trim();render();},120);});
+  $('qx').addEventListener('click',function(){q.value='';st.q='';render();q.focus();});
+  $('pills').addEventListener('click',function(e){
+    var b=e.target.closest('button'); if(!b) return;
+    var k=b.dataset.k, v=b.dataset.v;
+    if(k==='q'){st.q='';q.value='';}
+    else if(k==='price') st.price='';
+    else if(k==='stock') st.stock=false;
+    else st[k]=st[k].filter(function(x){return x!==v});
+    paintChips(); render();
+  });
+  grid.addEventListener('click',function(e){ if(e.target.id==='emptyClear') clearAll(); });
+  $('focusSearch').addEventListener('click',function(){ q.scrollIntoView({block:'center',behavior:'smooth'}); q.focus({preventScroll:true}); });
+
+  /* mobile drawer */
+  function drawer(open){
+    filters.classList.toggle('open',open); $('scrim').classList.toggle('open',open);
+    $('openF').setAttribute('aria-expanded',String(open));
+    document.body.style.overflow=open?'hidden':'';
+    if(open) $('closeF').focus();
+  }
+  $('openF').addEventListener('click',function(){drawer(true)});
+  $('closeF').addEventListener('click',function(){drawer(false)});
+  $('showRes').addEventListener('click',function(){drawer(false)});
+  $('scrim').addEventListener('click',function(){drawer(false)});
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&filters.classList.contains('open')) drawer(false); if(e.key==='/'&&document.activeElement!==q&&!/INPUT|SELECT|TEXTAREA/.test(document.activeElement.tagName)){e.preventDefault();q.focus();} });
+
+  var pre=all.filter(function(p){return p.isPre});
+  $('pbText').textContent=pre.map(function(p){return p.name}).join(', ').replace(/, ([^,]*)$/,' and $1')+'. Reserve yours before they are made.';
+  q.value=st.q; $('sort').value=st.sort;
+  tabs(); sizes(); paintChips(); render();
+  if(location.hash==='#q') q.focus();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pryora - Landing (hero B)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Jost:wght@300;400&family=Courier+Prime&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+:root{
+  --oxblood:#3A0D0D; --wine:#4F0C10; --gold:#B8892B; --champagne:#D9B04A;
+  --cream:#FFFBF0; --ivory:#F2ECE0;
+  --serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
+  --sans:'Jost',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --type:'Courier Prime','Courier New',monospace;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px);background:var(--cream)}
+body{margin:0;background:var(--cream);color:var(--wine);font-family:var(--sans);font-weight:300;line-height:1.65}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--champagne);outline-offset:3px}
+
+/* nav */
+nav{display:flex;justify-content:space-between;align-items:center;padding:28px clamp(20px,5vw,64px);background:var(--oxblood);color:var(--ivory)}
+nav .mark{font-family:var(--serif);font-size:26px;letter-spacing:.32em;font-weight:400}
+nav ul{display:flex;gap:clamp(16px,3vw,40px);list-style:none;margin:0;padding:0;font-size:14px;letter-spacing:.06em}
+nav a{text-decoration:none;opacity:.85}
+nav a:hover{opacity:1;color:var(--champagne)}
+
+/* hero (B: split, photo in an arch) */
+.hero{position:relative;overflow:hidden;isolation:isolate;background:radial-gradient(ellipse 60% 70% at 74% 52%,rgba(217,176,74,.12),rgba(217,176,74,0) 70%),var(--oxblood);color:var(--ivory)}
+.hero .in{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1.25fr .75fr;align-items:center;gap:clamp(32px,6vw,96px);
+  padding:clamp(48px,7vw,96px) clamp(20px,5vw,64px) clamp(64px,8vw,112px);min-height:min(calc(100vh - 92px),860px)}
+.hero .eyebrow{font-family:var(--type);font-size:12px;letter-spacing:.32em;color:var(--champagne);margin:0 0 28px;display:flex;align-items:center;gap:14px}
+.hero .eyebrow::before{content:"";width:36px;height:1px;background:var(--champagne)}
+.hero h1{font-family:var(--serif);font-weight:300;font-size:clamp(46px,5.6vw,92px);line-height:1;letter-spacing:.005em;margin:0}
+.hero h1 .l{white-space:nowrap}
+.hero h1 em{font-style:italic;color:var(--champagne)}
+.hero p{max-width:40ch;margin:30px 0 0;font-size:17px;opacity:.82}
+.hero .cta{display:flex;align-items:center;gap:28px;flex-wrap:wrap;margin-top:44px}
+.btn{display:inline-block;padding:16px 38px;background:var(--champagne);border:1px solid var(--champagne);color:var(--oxblood);text-decoration:none;font-size:14px;letter-spacing:.14em;transition:background .25s,color .25s}
+.btn:hover{background:transparent;color:var(--champagne)}
+.lnk{color:var(--ivory);text-decoration:none;font-size:14px;letter-spacing:.14em;padding-bottom:4px;border-bottom:1px solid rgba(242,236,224,.35);transition:border-color .25s,color .25s}
+.lnk:hover{color:var(--champagne);border-color:var(--champagne)}
+
+/* the arch */
+.hero .pic{position:relative;justify-self:center;width:min(440px,100%)}
+.hero .pic::before{content:"";position:absolute;inset:0;transform:translate(-20px,20px);border:1px solid rgba(217,176,74,.7);border-radius:999px 999px 0 0;pointer-events:none}
+.hero .arch2{position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:999px 999px 0 0;background:var(--wine);box-shadow:0 40px 80px -40px rgba(0,0,0,.6);
+  animation:rise 1.4s .2s cubic-bezier(.65,0,.25,1) both}
+.hero .arch2 img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 60%;display:block;animation:settle 2.2s .2s cubic-bezier(.2,.7,.2,1) both}
+.hero .chip{position:absolute;left:-28px;bottom:36px;z-index:2;background:var(--cream);color:var(--wine);padding:14px 20px;display:grid;gap:2px;box-shadow:0 14px 30px -14px rgba(0,0,0,.5);animation:fadeup .9s 1.3s ease both}
+.hero .chip b{font-family:var(--serif);font-weight:400;font-size:20px;line-height:1.1}
+.hero .chip span{font-size:13px;color:#8A6418}
+.hero .star4{position:absolute;right:-6px;top:18%;width:22px;height:22px;fill:var(--champagne);animation:fadeup .9s 1.6s ease both}
+@keyframes rise{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes settle{from{transform:scale(1.18)}to{transform:scale(1)}}
+@keyframes fadeup{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+/* the signature curve: behind everything, sweeping from under the text over the arch */
+.curve{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+.curve path{fill:none;stroke:var(--champagne);stroke-width:1.4;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;opacity:.85;animation:draw 3s .4s cubic-bezier(.5,0,.2,1) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+
+@media (max-width:900px){
+  .hero h1 .l{white-space:normal}
+  .curve{display:none}
+  .hero .in{grid-template-columns:1fr;text-align:center;min-height:0;gap:56px}
+  .hero .eyebrow{justify-content:center}
+  .hero .eyebrow::before{display:none}
+  .hero p{margin-left:auto;margin-right:auto}
+  .hero .cta{justify-content:center}
+  .hero .pic{width:min(340px,80%)}
+  .hero .chip{left:-14px;bottom:24px;text-align:left}
+}
+
+/* collections */
+.wrap{max-width:1120px;margin:0 auto;padding:clamp(64px,9vw,120px) clamp(20px,5vw,48px)}
+h2{font-family:var(--serif);font-weight:400;font-size:clamp(32px,4.5vw,52px);line-height:1.1;margin:0 0 12px;color:var(--wine)}
+.lede{max-width:46ch;margin:0 0 56px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,44px);align-items:start}
+.card{text-decoration:none;display:block}
+.card:nth-child(2){margin-top:64px}
+.arch{aspect-ratio:3/4;background:var(--ivory);border-radius:999px 999px 0 0;display:grid;place-items:center;border:1px solid rgba(184,137,43,.45);transition:background .3s}
+.card:hover .arch{background:var(--oxblood)}
+.card:hover .arch svg *{stroke:var(--champagne)}
+.arch svg{width:46%;height:auto}
+.arch svg *{fill:none;stroke:var(--wine);stroke-width:1.6;transition:stroke .3s}
+.card h3{font-family:var(--serif);font-weight:400;font-size:26px;margin:20px 0 2px}
+.card span{font-size:15px;color:var(--gold)}
+.card span{color:#8A6418}
+
+/* photo trio: full-bleed, three whole photos side by side */
+.trio{--gap:clamp(28px,5vw,72px);--pad:clamp(20px,5vw,48px);--cw:calc((min(1000px,100% - 2*var(--pad)) - 2*var(--gap))/3);
+  position:relative;isolation:isolate;display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);align-items:center;
+  background:var(--oxblood);padding:clamp(64px,9vw,120px) max(var(--pad),calc((100% - 1000px)/2))}
+/* the whitish middle band, behind the straight photo */
+.trio::before{content:"";position:absolute;z-index:-1;top:0;bottom:0;left:50%;transform:translateX(-50%);width:calc(var(--cw) + var(--gap) - 8px);background:var(--ivory)}
+.shot{transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.shot:nth-child(1){transform:rotate(-4deg)}
+.shot:nth-child(3){transform:rotate(4deg)}
+.shot:nth-child(1):hover,.shot:nth-child(3):hover,.shot:nth-child(1):focus-visible,.shot:nth-child(3):focus-visible{transform:rotate(0) translateY(-8px)}
+.shot:nth-child(2):hover,.shot:nth-child(2):focus-visible{transform:translateY(-8px)}
+.shot{position:relative;display:block;aspect-ratio:4/5;overflow:hidden;background:var(--ivory);text-decoration:none;color:var(--ivory)}
+.shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
+.shot::before{content:"";position:absolute;inset:14px;border:1px solid rgba(255,251,240,.7);opacity:0;transform:scale(1.04);transition:opacity .5s,transform .8s cubic-bezier(.2,.7,.2,1);pointer-events:none;z-index:1}
+.shot:hover::before,.shot:focus-visible::before{opacity:1;transform:none}
+.shot::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(58,13,13,.72) 0%,rgba(58,13,13,.18) 30%,rgba(58,13,13,0) 50%);opacity:.85;transition:opacity .5s;pointer-events:none}
+.shot .lbl{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:clamp(16px,2vw,26px);display:flex;justify-content:space-between;align-items:flex-end;gap:12px}
+.shot h3{font-family:var(--serif);font-weight:300;font-size:clamp(22px,2.2vw,30px);line-height:1;margin:0}
+.shot .go{font-family:var(--type);font-size:11px;letter-spacing:.28em;color:var(--champagne);white-space:nowrap;opacity:0;transform:translateX(-8px);transition:opacity .4s,transform .4s}
+.shot:hover img,.shot:focus-visible img{transform:scale(1.04)}
+.shot:hover::after,.shot:focus-visible::after{opacity:1}
+.shot:hover .go,.shot:focus-visible .go{opacity:1;transform:none}
+
+/* scroll reveal: each photo rises in from below, one after another */
+.js .shot.reveal{clip-path:inset(100% 0 0 0);transition:clip-path 1.2s cubic-bezier(.65,0,.25,1) calc(var(--i,0)*.16s),transform .7s cubic-bezier(.2,.7,.2,1)}
+.js .shot.reveal img{transform:scale(1.15);transition:transform 1.8s cubic-bezier(.2,.7,.2,1) calc(var(--i,0)*.16s)}
+.js .shot.reveal .lbl{opacity:0;transform:translateY(12px);transition:opacity .7s ease calc(.6s + var(--i,0)*.16s),transform .7s ease calc(.6s + var(--i,0)*.16s)}
+.js .shot.reveal.in{clip-path:inset(0 0 0 0)}
+.js .shot.reveal.in img{transform:scale(1)}
+.js .shot.reveal.in .lbl{opacity:1;transform:none}
+.js .shot.reveal.done img{transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
+.js .shot.reveal.done:hover img,.js .shot.reveal.done:focus-visible img{transform:scale(1.04)}
+
+
+/* breather: symbols + words + socials */
+.ethos{text-align:center;padding:clamp(80px,11vw,150px) clamp(20px,5vw,48px);background:var(--cream)}
+.sym{display:flex;justify-content:center;align-items:center;gap:clamp(20px,4vw,56px);margin:0 0 clamp(36px,5vw,56px)}
+.sym svg.i{width:clamp(44px,6vw,72px);height:auto;overflow:visible}
+.sym svg.i *{fill:none;stroke:var(--wine);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.sym svg.s{width:12px;height:12px;fill:var(--gold);flex:none}
+.ethos h2{font-weight:300;font-size:clamp(34px,5.2vw,64px);line-height:1.08;margin:0 auto}
+.ethos h2 em{font-style:italic;color:#8A6418}
+.ethos .txt{text-wrap:balance;max-width:46ch;margin:26px auto 0;font-size:17px}
+.tag{font-family:var(--type)}
+.ethos .tag{font-family:var(--type);font-size:12px;letter-spacing:.3em;color:#8A6418;margin:44px 0 18px}
+.soc{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+.soc a{display:inline-flex;align-items:center;gap:12px;padding:13px 26px;border:1px solid var(--gold);color:var(--wine);text-decoration:none;font-size:14px;letter-spacing:.12em;transition:background .25s,color .25s,border-color .25s}
+.soc a svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.5}
+.soc a svg .f{fill:currentColor;stroke:none}
+.soc a:hover,.soc a:focus-visible{background:var(--oxblood);border-color:var(--oxblood);color:var(--champagne)}
+/* symbols draw themselves in once, then the stars fade up */
+.js .ethos .sym svg.i *{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.8s cubic-bezier(.5,0,.2,1)}
+.js .ethos .sym svg.i:nth-of-type(2) *{transition-delay:.25s}
+.js .ethos .sym svg.i:nth-of-type(3) *{transition-delay:.5s}
+.js .ethos .sym svg.s{opacity:0;transform:scale(.4);transition:opacity .6s ease 1.2s,transform .6s ease 1.2s}
+.js .ethos .fade{opacity:0;transform:translateY(14px);transition:opacity .9s ease .7s,transform .9s ease .7s}
+.js .ethos.in .sym svg.i *{stroke-dashoffset:0}
+.js .ethos.in .sym svg.s{opacity:1;transform:none}
+.js .ethos.in .fade{opacity:1;transform:none}
+
+/* footer */
+footer{background:var(--oxblood);color:var(--ivory);font-size:15px}
+.fin{padding:clamp(56px,7vw,96px) clamp(20px,5vw,64px) 28px}
+
+/* film: the last video, small, framed, with the wordmark behind it */
+.film{position:relative;overflow:hidden;isolation:isolate;background:var(--ivory);padding:clamp(72px,10vw,140px) clamp(20px,5vw,48px);display:grid;justify-items:center;text-align:center}
+.film .ghost{position:absolute;z-index:-1;left:50%;top:50%;transform:translate(-50%,-56%);margin:0;white-space:nowrap;pointer-events:none;
+  font-family:var(--serif);font-weight:300;font-size:clamp(72px,15.5vw,260px);letter-spacing:.12em;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(184,137,43,.42)}
+.film .frame{position:relative;width:min(640px,100%)}
+.film .frame::before{content:"";position:absolute;inset:0;transform:translate(18px,18px);border:1px solid var(--gold);border-radius:50% 50% 0 0 / 34% 34% 0 0;pointer-events:none}
+.film .clip{position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:50% 50% 0 0 / 34% 34% 0 0;background:var(--cream);box-shadow:0 30px 60px -30px rgba(58,13,13,.45)}
+.film video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.film .seal{position:absolute;right:-34px;bottom:-34px;width:112px;height:112px;z-index:2}
+.film .seal .ring{animation:spin 22s linear infinite;transform-origin:50% 50%}
+.film .seal text{font-family:var(--type);font-size:9.6px;letter-spacing:.26em;fill:var(--champagne)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.film .cap{margin:clamp(40px,5vw,56px) 0 0;font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(22px,2.6vw,30px);color:var(--wine)}
+.film .cap small{display:block;margin-top:10px;font-family:var(--type);font-style:normal;font-size:12px;letter-spacing:.3em;color:#8A6418}
+.foot{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:clamp(28px,4vw,64px)}
+footer .mark{font-family:var(--serif);letter-spacing:.32em;font-size:24px}
+footer .about p{margin:16px 0 0;max-width:34ch;opacity:.8}
+footer h4{font-family:var(--type);font-weight:400;font-size:12px;letter-spacing:.28em;color:var(--champagne);margin:6px 0 18px}
+footer ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+footer a{text-decoration:none;opacity:.85}
+footer a:hover{opacity:1;color:var(--champagne)}
+.legal{max-width:1120px;margin:clamp(40px,6vw,72px) auto 0;padding-top:24px;border-top:1px solid rgba(217,176,74,.25);display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-between;font-size:13px;opacity:.7}
+
+/* video: worn (before collection) */
+.worn{position:relative;background:var(--oxblood);overflow:hidden;aspect-ratio:16/9;width:100%}
+.worn video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;display:block}
+.worn:has(.cap)::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(58,13,13,.85) 0%,rgba(58,13,13,.25) 45%,rgba(58,13,13,0) 70%),linear-gradient(to bottom,rgba(58,13,13,.55),rgba(58,13,13,0) 22%);pointer-events:none}
+.worn .cap{position:absolute;left:0;right:0;bottom:0;z-index:1;color:var(--ivory);padding:clamp(28px,5vw,64px) clamp(20px,5vw,64px);display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.worn .cap p{font-family:var(--serif);font-weight:300;font-size:clamp(28px,4vw,48px);line-height:1.1;margin:0;max-width:16ch}
+.worn .cap span{font-family:var(--type);font-size:12px;letter-spacing:.3em;color:var(--champagne)}
+
+
+
+/* promise strip: the pause between the hero and the film */
+.promise{background:var(--cream);padding:clamp(40px,5vw,64px) 0;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.promise .track{display:flex;width:max-content;animation:drift 48s linear infinite}
+.promise:hover .track{animation-play-state:paused}
+.promise ul{display:flex;list-style:none;margin:0;padding:0}
+.promise li{display:flex;align-items:center;gap:clamp(28px,4vw,56px);padding-right:clamp(28px,4vw,56px);font-family:var(--type);font-size:13px;letter-spacing:.3em;color:#8A6418;white-space:nowrap}
+.promise li svg{width:12px;height:12px;fill:var(--gold);flex:none}
+@keyframes drift{to{transform:translateX(-50%)}}
+
+/* the first film sits in the page like a framed picture */
+.worn{width:calc(100% - 2*clamp(16px,4vw,56px));margin:0 auto clamp(16px,4vw,56px)}
+
+@media (max-width:760px){
+  nav ul{display:none}
+  .grid{grid-template-columns:1fr}
+  .card:nth-child(2){margin-top:0}
+  .arch{aspect-ratio:4/4}
+  .trio{grid-template-columns:minmax(0,320px);justify-content:center;gap:36px;padding:64px var(--pad)}
+  .trio::before{display:none}
+  .shot .go{opacity:1;transform:none}
+  .worn{aspect-ratio:16/9}
+  .foot{grid-template-columns:1fr 1fr}
+  .foot .about{grid-column:1/-1}
+  .film .seal{width:84px;height:84px;right:-10px;bottom:-30px}
+  .film .frame::before{transform:translate(10px,10px)}
+  .worn video{object-position:48% 50%}
+}
+@media (prefers-reduced-motion:reduce){.curve path{animation:none;stroke-dashoffset:0}.hero *{animation:none!important}.promise .track{animation:none}.promise ul[aria-hidden]{display:none}.promise .track{width:auto;flex-wrap:wrap;justify-content:center}.promise ul{flex-wrap:wrap;justify-content:center;row-gap:14px}.js .shot.reveal{clip-path:none!important}.js .shot.reveal img,.js .shot.reveal .lbl{opacity:1!important;transform:none!important}.shot,.shot *{transition:none!important}.film .seal .ring{animation:none}.js .ethos *{transition:none!important;opacity:1!important;transform:none!important;stroke-dashoffset:0!important}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="mark">PRYORA</div>
+  <ul><li><a href="#collections">Rings</a></li><li><a href="#collections">Necklaces</a></li><li><a href="#collections">Earrings</a></li><li><a href="#about">About us</a></li></ul>
+</nav>
+
+<header class="hero">
+  <svg class="curve" viewBox="0 0 1440 800" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" vector-effect="non-scaling-stroke" d="M-40 640 C 220 760, 460 700, 640 560 S 820 150, 1050 120 S 1400 230, 1500 140"/></svg>
+  <div class="in">
+    <div class="copy">
+      <div class="eyebrow">ELEGANCE AT ITS PEAK</div>
+      <h1><span class="l">Made to be worn</span><br><em>for decades</em></h1>
+      <p>Fine jewellery in 18k gold, designed in small batches and finished by hand.</p>
+      <div class="cta">
+        <a class="btn" href="#collections">Shop the collection</a>
+        <a class="lnk" href="#about">Our story</a>
+      </div>
+    </div>
+    <div class="pic">
+      <div class="arch2"><img src="product%20images/type%201/web/necklaces.jpg" alt="Gold infinity, bow and crescent moon pendants on silk" width="880" height="1100" fetchpriority="high"></div>
+      <svg class="star4" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 0 C10.8 6 14 9.2 20 10 C14 10.8 10.8 14 10 20 C9.2 14 6 10.8 0 10 C6 9.2 9.2 6 10 0Z"/></svg>
+      <div class="chip"><b>Crescent pendant</b><span>From $180</span></div>
+    </div>
+  </div>
+</header>
+
+<section class="promise" aria-label="Our promises">
+  <div class="track">
+    <ul><li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 0 C10.8 6 14 9.2 20 10 C14 10.8 10.8 14 10 20 C9.2 14 6 10.8 0 10 C6 9.2 9.2 6 10 0Z"/></svg><span>18K SOLID GOLD</span></li><li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 0 C10.8 6 14 9.2 20 10 C14 10.8 10.8 14 10 20 C9.2 14 6 10.8 0 10 C6 9.2 9.2 6 10 0Z"/></svg><span>FINISHED BY HAND</span></li><li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 0 C10.8 6 14 9.2 20 10 C14 10.8 10.8 14 10 20 C9.2 14 6 10.8 0 10 C6 9.2 9.2 6 10 0Z"/></svg><span>FREE INSURED SHIPPING</span></li><li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 0 C10.8 6 14 9.2 20 10 C14 10.8 10.8 14 10 20 C9.2 14 6 10.8 0 10 C6 9.2 9.2 6 10 0Z"/></svg><span>30-DAY RETURNS</span></li><li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 0 C10.8 6 14 9.2 20 10 C14 10.8 10.8 14 10 20 C9.2 14 6 10.8 0 10 C6 9.2 9.2 6 10 0Z"/></svg><span>DESIGNED IN SMALL BATCHES</span></li></ul>
+    <ul aria-hidden="true"><li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 0 C10.8 6 14 9.2 20 10 C14 10.8 10.8 14 10 20 C9.2 14 6 10.8 0 10 C6 9.2 9.2 6 10 0Z"/></svg><span>18K SOLID GOLD</span></li><li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 0 C10.8 6 14 9.2 20 10 C14 10.8 10.8 14 10 20 C9.2 14 6 10.8 0 10 C6 9.2 9.2 6 10 0Z"/></svg><span>FINISHED BY HAND</span></li><li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 0 C10.8 6 14 9.2 20 10 C14 10.8 10.8 14 10 20 C9.2 14 6 10.8 0 10 C6 9.2 9.2 6 10 0Z"/></svg><span>FREE INSURED SHIPPING</span></li><li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 0 C10.8 6 14 9.2 20 10 C14 10.8 10.8 14 10 20 C9.2 14 6 10.8 0 10 C6 9.2 9.2 6 10 0Z"/></svg><span>30-DAY RETURNS</span></li><li><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 0 C10.8 6 14 9.2 20 10 C14 10.8 10.8 14 10 20 C9.2 14 6 10.8 0 10 C6 9.2 9.2 6 10 0Z"/></svg><span>DESIGNED IN SMALL BATCHES</span></li></ul>
+  </div>
+</section>
+
+<main>
+<section class="worn" aria-label="A Pryora ring being worn">
+  <video src="videos/Video2.mp4" autoplay muted loop playsinline preload="auto" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1"></video>
+  <div class="cap">
+    <p>Slipped on once, kept for a lifetime.</p>
+    <span>WORN EVERY DAY</span>
+  </div>
+</section>
+
+<section class="wrap" id="collections">
+  <h2>The collection</h2>
+  <p class="lede">Three families, each drawn from the same flowing line. Start with the piece you will wear every day.</p>
+  <div class="grid">
+    <a class="card" href="#collections">
+      <div class="arch"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="62" r="26"/><path d="M38 38 L50 22 L62 38 Z"/></svg></div>
+      <h3>Rings</h3><span>From $240</span>
+    </a>
+    <a class="card" href="#collections">
+      <div class="arch"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M14 20 C 14 80, 86 80, 86 20"/><path d="M50 74 L42 86 L50 98 L58 86 Z"/></svg></div>
+      <h3>Necklaces</h3><span>From $180</span>
+    </a>
+    <a class="card" href="#collections">
+      <div class="arch"><svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 12 L50 34"/><path d="M50 34 C 24 44, 24 84, 50 90 C 76 84, 76 44, 50 34 Z"/></svg></div>
+      <h3>Earrings</h3><span>From $120</span>
+    </a>
+  </div>
+</section>
+
+<section class="trio" aria-label="Pieces from the collection">
+  <a class="shot reveal" href="#collections">
+    <img src="product%20images/type%201/web/rings.jpg" alt="Five gold leaf rings resting on cream silk" loading="lazy" decoding="async" width="880" height="1100">
+    <div class="lbl"><h3>Leaf rings</h3><span class="go">SHOP RINGS</span></div>
+  </a>
+  <a class="shot reveal" href="#collections">
+    <img src="product%20images/type%201/web/necklaces.jpg" alt="Gold infinity, bow and crescent moon pendants on silk" loading="lazy" decoding="async" width="880" height="1100">
+    <div class="lbl"><h3>Pendants</h3><span class="go">SHOP NECKLACES</span></div>
+  </a>
+  <a class="shot reveal" href="#collections">
+    <img src="product%20images/type%201/web/bangles.jpg" alt="Stack of gold bangles, including an evil eye bangle, on a cushion" loading="lazy" decoding="async" width="880" height="1100">
+    <div class="lbl"><h3>Bangles</h3><span class="go">SHOP BANGLES</span></div>
+  </a>
+</section>
+
+<section class="ethos" aria-label="About the Pryora line">
+  <div class="sym" aria-hidden="true">
+    <svg class="i" viewBox="0 0 100 100" pathLength="1"><circle cx="50" cy="62" r="26" pathLength="1"/><path d="M38 38 L50 22 L62 38 Z" pathLength="1"/></svg>
+    <svg class="s" viewBox="0 0 20 20"><path d="M10 0 C10.8 6 14 9.2 20 10 C14 10.8 10.8 14 10 20 C9.2 14 6 10.8 0 10 C6 9.2 9.2 6 10 0Z"/></svg>
+    <svg class="i" viewBox="0 0 100 100"><path d="M14 20 C 14 80, 86 80, 86 20" pathLength="1"/><path d="M50 74 L42 86 L50 98 L58 86 Z" pathLength="1"/></svg>
+    <svg class="s" viewBox="0 0 20 20"><path d="M10 0 C10.8 6 14 9.2 20 10 C14 10.8 10.8 14 10 20 C9.2 14 6 10.8 0 10 C6 9.2 9.2 6 10 0Z"/></svg>
+    <svg class="i" viewBox="0 0 100 100"><path d="M50 12 L50 34" pathLength="1"/><path d="M50 34 C 24 44, 24 84, 50 90 C 76 84, 76 44, 50 34 Z" pathLength="1"/></svg>
+  </div>
+  <h2>Gold that remembers<br><em>every hand</em></h2>
+  <p class="txt fade">A ring, a chain, a single drop of light. Small things, drawn from one flowing line, made to be worn until they become a part of you.</p>
+  <div class="tag fade">FOLLOW THE LINE</div>
+  <div class="soc fade">
+    <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Pryora on Instagram">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle class="f" cx="17.2" cy="6.8" r="1.1"/></svg>Instagram
+    </a>
+    <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Pryora on Facebook">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8.5h2.5V5H14c-2.2 0-3.8 1.6-3.8 3.8V11H8v3.4h2.2V21h3.6v-6.6h2.5l.5-3.4h-3V9.2c0-.4.3-.7.7-.7Z" class="f"/></svg>Facebook
+    </a>
+  </div>
+</section>
+
+<section class="film" aria-label="Pryora, in motion">
+  <p class="ghost" aria-hidden="true">PRYORA</p>
+  <div class="frame">
+    <div class="clip"><video src="videos/Video1.mp4" autoplay muted loop playsinline preload="metadata" disablepictureinpicture disableremoteplayback aria-hidden="true" tabindex="-1"></video></div>
+    <svg class="seal" viewBox="0 0 120 120" aria-hidden="true">
+      <circle cx="60" cy="60" r="58" fill="#3A0D0D"/>
+      <circle cx="60" cy="60" r="50" fill="none" stroke="#D9B04A" stroke-width=".6" opacity=".6"/>
+      <g class="ring">
+        <defs><path id="sealpath" d="M60 60 m-41 0 a41 41 0 1 1 82 0 a41 41 0 1 1 -82 0"/></defs>
+        <text><textPath href="#sealpath" startOffset="0">ELEGANCE AT ITS PEAK &#183; PRYORA &#183;</textPath></text>
+      </g>
+      <path fill="#D9B04A" transform="translate(51 51) scale(.9)" d="M10 0 C10.8 6 14 9.2 20 10 C14 10.8 10.8 14 10 20 C9.2 14 6 10.8 0 10 C6 9.2 9.2 6 10 0Z"/>
+    </svg>
+  </div>
+  <p class="cap">The line, in motion.<small>EST. IN SMALL BATCHES</small></p>
+</section>
+
+</main>
+
+<footer id="about">
+  <div class="fin">
+  <div class="foot">
+    <div class="about">
+      <div class="mark">PRYORA</div>
+      <p>Fine jewellery in 18k gold, designed in small batches and finished by hand. Made to be worn for decades.</p>
+    </div>
+    <div>
+      <h4>ABOUT US</h4>
+      <ul><li><a href="#about">Our story</a></li><li><a href="#about">The craft</a></li><li><a href="#about">Materials</a></li><li><a href="#about">Journal</a></li></ul>
+    </div>
+    <div>
+      <h4>SHOP</h4>
+      <ul><li><a href="#collections">Rings</a></li><li><a href="#collections">Necklaces</a></li><li><a href="#collections">Earrings</a></li><li><a href="#collections">Bangles</a></li></ul>
+    </div>
+    <div>
+      <h4>HELP</h4>
+      <ul><li><a href="#about">Shipping</a></li><li><a href="#about">Returns</a></li><li><a href="#about">Ring sizes</a></li><li><a href="#about">Contact</a></li></ul>
+    </div>
+  </div>
+  <div class="legal">
+    <span>&copy; 2026 Pryora. All rights reserved.</span>
+    <span>Free insured shipping and 30-day returns</span>
+  </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var vids=[].slice.call(document.querySelectorAll('video'));
+  var still=window.matchMedia('(prefers-reduced-motion: reduce)');
+  vids.forEach(function(v){
+    v.muted=true; v.defaultMuted=true; v.volume=0;
+    v.addEventListener('volumechange',function(){ if(!v.muted||v.volume>0){v.muted=true;v.volume=0;} });
+  });
+  function play(v){ if(still.matches) return; var p=v.play(); if(p&&p.catch) p.catch(function(){}); }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){ e.isIntersecting?play(e.target):e.target.pause(); });
+    },{threshold:.15});
+    vids.forEach(function(v){ io.observe(v); });
+  }
+  function apply(){ vids.forEach(function(v){ if(still.matches){v.pause();} }); }
+  apply(); still.addEventListener&&still.addEventListener('change',apply);
+})();
+</script>
+
+<script>
+(function(){
+  var cards=[].slice.call(document.querySelectorAll('.reveal'));
+  cards.forEach(function(c,i){ c.style.setProperty('--i',i); });
+  function show(c){ c.classList.add('in'); setTimeout(function(){ c.classList.add('done'); },2600); }
+  if(!('IntersectionObserver' in window)){ cards.forEach(show); var e0=document.querySelector('.ethos'); if(e0) e0.classList.add('in'); return; }
+  // watch the unclipped parent section: a fully clipped element never counts as "in view"
+  var groups=[].slice.call(document.querySelectorAll('.trio'));
+  var eth=document.querySelector('.ethos');
+  if(eth){ if('IntersectionObserver' in window){ var eo=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); eo.unobserve(e.target);} }); },{threshold:.35}); eo.observe(eth);} else eth.classList.add('in'); }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){ [].forEach.call(e.target.querySelectorAll('.reveal'),show); io.unobserve(e.target); }
+    });
+  },{threshold:.15});
+  groups.forEach(function(g){ io.observe(g); });
+})();
+</script>
+</body>
+</html>
