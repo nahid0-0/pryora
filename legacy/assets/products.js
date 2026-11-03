@@ -2,7 +2,7 @@
    Edit products here: name, type, price (in Taka), photos, sizes, stock.
    A product with `preorder: { ships: '...' }` is sold as a pre-order. */
 (function () {
-  var IMG = 'product%20images/web/';
+  var IMG = '../public/images/products/';
 
   var SIZES = {
     ring: ['Adjustable', '6', '7', '8'],
